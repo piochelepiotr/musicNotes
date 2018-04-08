@@ -1,5 +1,6 @@
 import generateNotes, { notesNames, numberNotes } from '../GenerateNotes'
 import { takeEvery, call, put } from "redux-saga/effects"
+import {types} from '../actions/partitions'
 
 function* workerSaga(action) {
     const notes = yield call(generateNotes, numberNotes);
@@ -11,12 +12,12 @@ function* workerSaga(action) {
 }
 
 function* textChangedSaga(action) {
-    if (notesNames[action.notes[action.activeNote]] === action.message) {
+    if (notesNames[action.notes[action.activeNote]] === action.text) {
         yield put({type: "UPDATE_TEXT", message:""});
         yield put({type:"NEXT_NOTE", activeNote:action.activeNote, startTime: action.startTime});
     }
     else {
-        yield put({type: "UPDATE_TEXT", message:action.message});
+        yield put({type: "UPDATE_TEXT", message:action.text});
     }
 }
 
@@ -33,6 +34,6 @@ function* nextNoteSaga(action) {
 
 export function* watcherSaga() {
     yield takeEvery("GENERATE_NOTES", workerSaga);
-    yield takeEvery("TEXT_CHANGED", textChangedSaga);
+    yield takeEvery(types.TEXT.CHANGED, textChangedSaga);
     yield takeEvery("NEXT_NOTE", nextNoteSaga);
 }

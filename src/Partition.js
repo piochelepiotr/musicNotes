@@ -34,23 +34,23 @@ class Partition extends Component {
         const line = this.props.notes.map((note, i) => {
             if(base-1 === this.props.notes[i]) {
                 if (this.props.activeNote === i) {
-                  return <Note style={{color: 'red'}} >o</Note>;
+                  return <Note key={i} style={{color: 'red'}} >o</Note>;
                 }
                 else {
-                  return <Note>o</Note>;
+                  return <Note key={i}>o</Note>;
                 }
             } else if(base === this.props.notes[i]) {
               if (this.props.activeNote === i) {
-                return <NoteDec style={{color: 'red'}} >o</NoteDec>;
+                return <NoteDec key={i} style={{color: 'red'}} >o</NoteDec>;
               }
               else {
-                return <NoteDec>o</NoteDec>;
+                return <NoteDec key={i}>o</NoteDec>;
               }
             } else {
-                return <Blank>o</Blank>;
+                return <Blank key={i}>o</Blank>;
             }
         });
-        return <Line>{line}</Line>;
+        return <Line key={base}>{line}</Line>;
     }
 
     componentWillMount() {
