@@ -3,7 +3,7 @@ const getRandomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-export const notesNames = ["sol", "fa", "mi", "ré", "do", "si", "la", "sol", "fa", "mi"];
+export const notesNames = ["o", "f", "m", "r", "d", "s", "l", "o", "f", "m"];
 export const numberNotes = 20;
 
 const generateNotes = (length) => {
