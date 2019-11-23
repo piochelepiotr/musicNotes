@@ -55,99 +55,123 @@ export const mapping = {
     "d1": {
         "letter": "3C",
         "readable": "Do",
+        "delay_sec": 0.3,
     },
     "r1b": {
         "letter": "3Db",
         "readable": "Ré bémol",
+        "delay_sec": 0,
     },
     "r1": {
         "letter": "3D",
         "readable": "Ré",
+        "delay_sec": 0.2,
     },
     "m1b": {
         "letter": "3Eb",
         "readable": "Mi bémol",
+        "delay_sec": 0.2,
     },
     "m1": {
         "letter": "3E",
         "readable": "Mi",
+        "delay_sec": 0.2,
     },
     "f1": {
         "letter": "3F",
         "readable": "Fa",
+        "delay_sec": 0.8,
     },
     "o1b": {
         "letter": "3Gb",
         "readable": "Sol bé",
+        "delay_sec": 0.3,
     },
     "o1": {
-        "letter": "3Gb",
+        "letter": "3G",
         "readable": "Sol",
+        "delay_sec": 0.4,
     },
     "l1b": {
         "letter": "3Ab",
         "readable": "La bémol",
+        "delay_sec": 0.6,
     },
     "l1": {
         "letter": "3A",
         "readable": "La",
+        "delay_sec": 0.4,
     },
     "s1b": {
         "letter": "3Bb",
         "readable": "Si bémol",
+        "delay_sec": 0.2,
     },
     "s1": {
         "letter": "3B",
         "readable": "Si",
+        "delay_sec": 0.3,
     },
 
     "d2": {
         "letter": "4C",
         "readable": "Do",
+        "delay_sec": 0.4,
     },
     "r2b": {
         "letter": "4Db",
         "readable": "Ré bémol",
+        "delay_sec": 0.4,
     },
     "r2": {
         "letter": "4D",
         "readable": "Ré",
+        "delay_sec": 0.2,
     },
     "m2b": {
         "letter": "4Eb",
         "readable": "Mi bémol",
+        "delay_sec": 0.5,
     },
     "m2": {
         "letter": "4E",
         "readable": "Mi",
+        "delay_sec": 0.5,
     },
     "f2": {
         "letter": "4F",
         "readable": "Fa",
+        "delay_sec": 0.3,
     },
     "o2b": {
         "letter": "4Gb",
         "readable": "Sol bémol",
+        "delay_sec": 0.2,
     },
     "o2": {
         "letter": "4G",
         "readable": "Sol",
+        "delay_sec": 0.2,
     },
     "l2b": {
         "letter": "4Ab",
         "readable": "La bémol",
+        "delay_sec": 0.2,
     },
     "l2": {
         "letter": "4A",
         "readable": "La",
+        "delay_sec": 0.2,
     },
     "s2b": {
         "letter": "4Bb",
         "readable": "Sol bémol",
+        "delay_sec": 0.2,
     },
     "s2": {
         "letter": "4B",
         "readable": "Sol",
+        "delay_sec": 0.2,
     },
 };
 
@@ -180,7 +204,7 @@ class Piano extends Component {
             }
             //if (this.state.play) {
                 var audio = this.audio[note];
-                audio.currentTime = 0.2;
+                audio.currentTime = mapping[note]["delay_sec"];
                 audio.play();
             //} else {
             //    this.audio[note].pause()
