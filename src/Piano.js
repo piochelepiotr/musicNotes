@@ -165,12 +165,12 @@ export const mapping = {
     },
     "s2b": {
         "letter": "4Bb",
-        "readable": "Sol bémol",
+        "readable": "Si bémol",
         "delay_sec": 0.2,
     },
     "s2": {
         "letter": "4B",
-        "readable": "Sol",
+        "readable": "Si",
         "delay_sec": 0.2,
     },
 };
