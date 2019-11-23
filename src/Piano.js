@@ -15,6 +15,7 @@ const WhiteKeys = styled.div`
   grid-row: 1;
   display: flex;
   justify-content: center;
+  pointer-events: none;
 `;
 
 const BlackKeys = styled.div`
@@ -22,6 +23,7 @@ const BlackKeys = styled.div`
   grid-row: 1;
   display: flex;
   justify-content: center;
+  pointer-events: none;
 `;
 
 const WhiteKey = styled.div`
@@ -31,6 +33,7 @@ const WhiteKey = styled.div`
   &:hover {
     background-color: rgb(200,200,200);
   }
+  pointer-events: auto;
 `;
 
 const BlackKey = styled.div`
@@ -42,6 +45,7 @@ const BlackKey = styled.div`
   &:hover {
     background-color: rgb(100,100,100);
   }
+  pointer-events: auto;
 `;
 
 const BlackKeySpacer = styled.div`
@@ -198,7 +202,7 @@ class Piano extends Component {
             console.log(this.audio[note]);
             console.log("previous", this.state.previous);
             console.log("next", this.state.next);
-            if (this.state.previous != "") {
+            if (this.state.previous !== "") {
                 console.log("heer");
                 this.audio[this.state.previous].pause();
             }
