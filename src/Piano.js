@@ -70,6 +70,7 @@ export const mapping = {
         "letter": "3D",
         "readable": "Ré",
         "delay_sec": 0.2,
+        "volume": 1,
     },
     "m1b": {
         "letter": "3Eb",
@@ -121,6 +122,7 @@ export const mapping = {
         "letter": "4C",
         "readable": "Do",
         "delay_sec": 0.4,
+        "volume": 0.7,
     },
     "r2b": {
         "letter": "4Db",
@@ -140,7 +142,7 @@ export const mapping = {
     "m2": {
         "letter": "4E",
         "readable": "Mi",
-        "delay_sec": 0.5,
+        "delay_sec": 0.6,
     },
     "f2": {
         "letter": "4F",
@@ -209,7 +211,8 @@ class Piano extends Component {
             //if (this.state.play) {
                 var audio = this.audio[note];
                 audio.currentTime = mapping[note]["delay_sec"];
-                audio.play();
+                audio.volume = mapping[note]["volume"] || 0.5;
+            audio.play();
             //} else {
             //    this.audio[note].pause()
             //}
