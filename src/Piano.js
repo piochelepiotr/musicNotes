@@ -8,6 +8,19 @@ const Background = styled.div`
   margin-top: 50px;
   background-color: black;
   height: 300px;
+  display: grid;
+`;
+
+const WhiteKeys = styled.div`
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+`;
+
+const BlackKeys = styled.div`
+  grid-column: 1;
+  grid-row: 1;
   display: flex;
   justify-content: center;
 `;
@@ -25,12 +38,18 @@ const BlackKey = styled.div`
   background-color: black;
   width: 30px;
   height: 150px;
-  position: relative;
-  left: 26px;
-  top: 0px;
+  margin-left: 6px;
+  margin-right: 6px;
   &:hover {
     background-color: rgb(100,100,100);
   }
+`;
+
+const BlackKeySpacer = styled.div`
+  width: 30px;
+  height: 150px;
+  margin-left: 6px;
+  margin-right: 6px;
 `;
 
 const mapping = {
@@ -102,40 +121,37 @@ class Piano extends Component {
     render() {
         return (
             <Background>
-                <WhiteKey onClick={() => this.play("d1")}>
+                <WhiteKeys>
+                    <WhiteKey onClick={() => this.play("d1")}/>
+                    <WhiteKey onClick={() => this.play("r1")}/>
+                    <WhiteKey onClick={() => this.play("m1")}/>
+                    <WhiteKey onClick={() => this.play("f1")}/>
+                    <WhiteKey onClick={() => this.play("o1")}/>
+                    <WhiteKey onClick={() => this.play("l1")}/>
+                    <WhiteKey onClick={() => this.play("s1")}/>
+                    <WhiteKey onClick={() => this.play("d2")}/>
+                    <WhiteKey onClick={() => this.play("r2")}/>
+                    <WhiteKey onClick={() => this.play("m2")}/>
+                    <WhiteKey onClick={() => this.play("f2")}/>
+                    <WhiteKey onClick={() => this.play("o2")}/>
+                    <WhiteKey onClick={() => this.play("l2")}/>
+                    <WhiteKey onClick={() => this.play("s2")}/>
+                </WhiteKeys>
+                <BlackKeys>
                     <BlackKey onClick={() => this.play("r1b")}/>
-                </WhiteKey>
-                <WhiteKey onClick={() => this.play("r1")}>
                     <BlackKey onClick={() => this.play("m1b")}/>
-                </WhiteKey>
-                <WhiteKey onClick={() => this.play("m1")}/>
-                <WhiteKey onClick={() => this.play("f1")}>
+                    <BlackKeySpacer/>
                     <BlackKey onClick={() => this.play("o1b")}/>
-                </WhiteKey>
-                <WhiteKey onClick={() => this.play("o1")}>
                     <BlackKey onClick={() => this.play("l1b")}/>
-                </WhiteKey>
-                <WhiteKey onClick={() => this.play("l1")}>
                     <BlackKey onClick={() => this.play("s1b")}/>
-                </WhiteKey>
-                <WhiteKey onClick={() => this.play("s1")}/>
-                <WhiteKey onClick={() => this.play("d2")}>
+                    <BlackKeySpacer/>
                     <BlackKey onClick={() => this.play("r2b")}/>
-                </WhiteKey>
-                <WhiteKey onClick={() => this.play("r2")}>
                     <BlackKey onClick={() => this.play("m2b")}/>
-                </WhiteKey>
-                <WhiteKey onClick={() => this.play("m2")}/>
-                <WhiteKey onClick={() => this.play("f2")}>
+                    <BlackKeySpacer/>
                     <BlackKey onClick={() => this.play("o2b")}/>
-                </WhiteKey>
-                <WhiteKey onClick={() => this.play("o2")}>
                     <BlackKey onClick={() => this.play("l2b")}/>
-                </WhiteKey>
-                <WhiteKey onClick={() => this.play("l2")}>
                     <BlackKey onClick={() => this.play("s2b")}/>
-                </WhiteKey>
-                <WhiteKey onClick={() => this.play("s2")}/>
+                </BlackKeys>
             </Background>
             )
     }
