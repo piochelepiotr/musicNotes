@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 import { textChanged } from './actions/partitions';
-import {notesNames} from "./GenerateNotes";
 
 const Background = styled.div`
   margin-top: 50px;
@@ -52,35 +51,107 @@ const BlackKeySpacer = styled.div`
   margin-right: 6px;
 `;
 
-const mapping = {
-    "d1": "3C",
-    "r1b": "3Db",
-    "r1": "3D",
-    "m1b": "3Eb",
-    "m1": "3E",
-    "f1": "3F",
-    "o1b": "3Gb",
-    "o1": "3Gb",
-    "l1b": "3Ab",
-    "l1": "3A",
-    "s1b": "3Bb",
-    "s1": "3B",
+export const mapping = {
+    "d1": {
+        "letter": "3C",
+        "readable": "Do",
+    },
+    "r1b": {
+        "letter": "3Db",
+        "readable": "Ré bémol",
+    },
+    "r1": {
+        "letter": "3D",
+        "readable": "Ré",
+    },
+    "m1b": {
+        "letter": "3Eb",
+        "readable": "Mi bémol",
+    },
+    "m1": {
+        "letter": "3E",
+        "readable": "Mi",
+    },
+    "f1": {
+        "letter": "3F",
+        "readable": "Fa",
+    },
+    "o1b": {
+        "letter": "3Gb",
+        "readable": "Sol bé",
+    },
+    "o1": {
+        "letter": "3Gb",
+        "readable": "Sol",
+    },
+    "l1b": {
+        "letter": "3Ab",
+        "readable": "La bémol",
+    },
+    "l1": {
+        "letter": "3A",
+        "readable": "La",
+    },
+    "s1b": {
+        "letter": "3Bb",
+        "readable": "Si bémol",
+    },
+    "s1": {
+        "letter": "3B",
+        "readable": "Si",
+    },
 
-    "d2": "4C",
-    "r2b": "4Db",
-    "r2": "4D",
-    "m2b": "4Eb",
-    "m2": "4E",
-    "f2": "4F",
-    "o2b": "4Gb",
-    "o2": "4G",
-    "l2b": "4Ab",
-    "l2": "4A",
-    "s2b": "4Bb",
-    "s2": "4B",
+    "d2": {
+        "letter": "4C",
+        "readable": "Do",
+    },
+    "r2b": {
+        "letter": "4Db",
+        "readable": "Ré bémol",
+    },
+    "r2": {
+        "letter": "4D",
+        "readable": "Ré",
+    },
+    "m2b": {
+        "letter": "4Eb",
+        "readable": "Mi bémol",
+    },
+    "m2": {
+        "letter": "4E",
+        "readable": "Mi",
+    },
+    "f2": {
+        "letter": "4F",
+        "readable": "Fa",
+    },
+    "o2b": {
+        "letter": "4Gb",
+        "readable": "Sol bémol",
+    },
+    "o2": {
+        "letter": "4G",
+        "readable": "Sol",
+    },
+    "l2b": {
+        "letter": "4Ab",
+        "readable": "La bémol",
+    },
+    "l2": {
+        "letter": "4A",
+        "readable": "La",
+    },
+    "s2b": {
+        "letter": "4Bb",
+        "readable": "Sol bémol",
+    },
+    "s2": {
+        "letter": "4B",
+        "readable": "Sol",
+    },
 };
 
-const getAudio = note => "notes/Piano.pp." + mapping[note] + ".mp3";
+const getAudio = note => "notes/Piano.pp." + mapping[note]["letter"] + ".mp3";
 
 class Piano extends Component {
 

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
 import { textChanged } from './actions/partitions';
+import { mapping } from './Piano';
 
-const StyledInput = styled.input`
-    margin-top: 200px;
+const StyledInput = styled.p`
     font-size: 40px;
 `
 
@@ -24,7 +24,7 @@ class Input extends Component {
 
     render() {
         return(
-            <StyledInput type="text" onChange={this.onMessageChanged.bind(this)} value={this.props.message} />
+            <StyledInput>Note : {mapping[this.props.message] ? mapping[this.props.message].readable : ""}</StyledInput>
         )
     }
 }
