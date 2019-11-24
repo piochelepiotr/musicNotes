@@ -2,25 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 
-const Blank = styled.p`
-  color: white;
-  display: inline;
-  margin-right: 20px;
-`
-
-const NoteDec = styled.p`
-  display: inline;
-  position: relative;
-  top: 9px;
-  margin-right: 20px;  
-`
-
-const Note = styled.p`
-  display: inline;
-  margin-right: 20px;  
-`
-
-const Note2 = styled.div`
+const Note = styled.div`
     margin: 0px;
     border-bottom: 1px solid black;
 `;
@@ -31,78 +13,40 @@ position: relative;
 top: -10px;
 `
 
-const StyledPartition2 = styled.div`
+const StyledPartition = styled.div`
   margin-top: 30px;
   display: grid;
   grid-auto-rows: 10px;
 `
 
-const Line = styled.div`
-  border-bottom: 1px solid black;
-`
-
-const StyledPartition = styled.div`
-  margin-top: 30px;
-`
-
 class Partition extends Component {
-
-    buildHTMLLine(base) {
-        const line = this.props.notes.map((note, i) => {
-            if(base-1 === this.props.notes[i]) {
-                if (this.props.activeNote === i) {
-                  return <Note key={i} style={{color: 'red'}} >o</Note>;
-                }
-                else {
-                  return <Note key={i}>o</Note>;
-                }
-            } else if(base === this.props.notes[i]) {
-              if (this.props.activeNote === i) {
-                return <NoteDec key={i} style={{color: 'red'}} >o</NoteDec>;
-              }
-              else {
-                return <NoteDec key={i}>o</NoteDec>;
-              }
-            } else {
-                return <Blank key={i}>o</Blank>;
-            }
-        });
-        return <Line key={base}>{line}</Line>;
-    }
 
     componentWillMount() {
         //let notes = generateNotes(30);
         this.props.generateNotes(0);
     }
 
-    render() {
-        var wrong = ["", "", "", "", ""];
-        const lines = wrong.map((base, i) => {
-            return this.buildHTMLLine(i*2+1);
-        })
 
+    render() {
         const notes = [];
         const firstLineRow = 0;
+        const firstColumn = 0;
         const permanentLines = [0, 2, 4, 6, 8].map(x => x + firstLineRow);
         const lastRow = 9;
         this.props.notes.forEach((note, i) => {
+            const col = i + firstColumn;
             for (let j = 0; j <= lastRow; j++) {
-                notes.push(<Note2 key={`${i},${j}`} style={{gridColumn: i + 1, gridRow: j + 1, borderBottomColor: permanentLines.includes(j) ? 'black' : 'white'}}>
-                    { this.props.notes[i] === j &&
+                notes.push(<Note key={`${col},${j}`} style={{gridColumn: col + 1, gridRow: j + 1, borderBottomColor: permanentLines.includes(j) ? 'black' : 'white'}}>
+                    { this.props.notes[col] === j &&
                         <Inside style={{color: this.props.activeNote === i? 'red' : 'black'}}>o</Inside>
                     }
-                </Note2>);
+                </Note>);
             }
         })
       return (
-          <div>
-        <StyledPartition>
-          {lines}
-        </StyledPartition>
-              <StyledPartition2>
-                  {notes}
-              </StyledPartition2>
-          </div>
+          <StyledPartition>
+              {notes}
+          </StyledPartition>
       );
     }
   }
