@@ -20,6 +20,23 @@ const Note = styled.p`
   margin-right: 20px;  
 `
 
+const Note2 = styled.div`
+    margin: 0px;
+    border-bottom: 1px solid black;
+`;
+
+const Inside = styled.p`
+margin: 0px;
+position: relative;
+top: -10px;
+`
+
+const StyledPartition2 = styled.div`
+  margin-top: 30px;
+  display: grid;
+  grid-auto-rows: 10px;
+`
+
 const Line = styled.div`
   border-bottom: 1px solid black;
 `
@@ -63,10 +80,29 @@ class Partition extends Component {
         const lines = wrong.map((base, i) => {
             return this.buildHTMLLine(i*2+1);
         })
+
+        const notes = [];
+        const firstLineRow = 0;
+        const permanentLines = [0, 2, 4, 6, 8].map(x => x + firstLineRow);
+        const lastRow = 9;
+        this.props.notes.forEach((note, i) => {
+            for (let j = 0; j <= lastRow; j++) {
+                notes.push(<Note2 key={`${i},${j}`} style={{gridColumn: i + 1, gridRow: j + 1, borderBottomColor: permanentLines.includes(j) ? 'black' : 'white'}}>
+                    { this.props.notes[i] === j &&
+                        <Inside style={{color: this.props.activeNote === i? 'red' : 'black'}}>o</Inside>
+                    }
+                </Note2>);
+            }
+        })
       return (
+          <div>
         <StyledPartition>
           {lines}
         </StyledPartition>
+              <StyledPartition2>
+                  {notes}
+              </StyledPartition2>
+          </div>
       );
     }
   }
