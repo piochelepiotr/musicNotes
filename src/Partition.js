@@ -52,8 +52,8 @@ class Partition extends Component {
             const {row} = notePos(note);
             return row;
         });
-        const firstLineRow = Math.min(...noteColumns);
-        const lastRow = Math.max(...noteColumns);
+        const firstLineRow = Math.min(...noteColumns, 0);
+        const lastRow = Math.max(...noteColumns, 8);
         console.log("first line", firstLineRow);
         const firstColumn = 0;
         const permanentLines = [0, 2, 4, 6, 8];

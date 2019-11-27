@@ -3,6 +3,8 @@ const getRandomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+const hedwigs = ["s1", "m2", "o2", "f2#", "m2", "s2", "l2", "f2#", "m2", "o2", "f2#", "r2#", "f2", "s1"];
+
 export const notesNames = ["d1", "r1b", "r1", "m1b", "m1", "f1", "o1b", "o1", "l1b", "l1", "s1b", "s1", "d2","r2b","r2","m2b","m2","f2","o2b","o2","l2b","l2","s2b","s2"];
 // export const notesNames = ["m1", "f1", "o1b", "o1", "l1b", "l1", "s1b", "s1", "d2","r2b","r2","m2b","m2","f2","o2b","o2","l2b","l2","s2b","s2"];
 export const zeroNote = "o2";
@@ -25,7 +27,22 @@ export const notePos = note => {
     return {row: row, bemol: bemol, diese: diese};
 };
 
+const buildPartition = (notes) => {
+    return notes.map(note => {
+        let bemol = true;
+        if (note.endsWith("#")) {
+            note = lines[lines.findIndex(x => x === note.substring(0, 2))+1] + "b";
+            bemol = false;
+        }
+        return {
+            note: notesNames.findIndex(x => x === note),
+            asBemol: bemol,
+        }
+    })
+};
+
 const generateNotes = (length) => {
+    return buildPartition(hedwigs);
     let notes = [];
     for(let i = 0; i < length; i++) {
         notes.push({
@@ -34,6 +51,6 @@ const generateNotes = (length) => {
         });
     }
     return notes;
-}
+};
 
 export default generateNotes;
