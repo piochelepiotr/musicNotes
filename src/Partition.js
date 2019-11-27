@@ -1,23 +1,41 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
+import {notePos} from "./GenerateNotes";
 
 const Note = styled.div`
-    margin: 0px;
     border-bottom: 1px solid black;
 `;
 
-const Inside = styled.p`
-margin: 0px;
-position: relative;
-top: -10px;
+const Inside = styled.div`
+    height:  100px;
+    position: relative;
+    top: -50px;
+    margin: 0px;
+    vertical-align: middle;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 `
 
 const StyledPartition = styled.div`
   margin-top: 30px;
   display: grid;
   grid-auto-rows: 10px;
-`
+`;
+
+const StyledChar = styled.div`
+    vertical-align: middle;
+`;
+
+const noteChar = (bemol, diese) => {
+    if (bemol) {
+        return <StyledChar>&#9837;o</StyledChar>;
+    } else if (diese) {
+        return <StyledChar>	&#9839;o</StyledChar>;
+    }
+    return <StyledChar>o</StyledChar>;
+};
 
 class Partition extends Component {
 
@@ -27,22 +45,30 @@ class Partition extends Component {
     }
 
 
+
     render() {
         const notes = [];
-        const firstLineRow = 0;
+        const noteColumns = this.props.notes.map(note => {
+            const {row} = notePos(note);
+            return row;
+        });
+        const firstLineRow = Math.min(...noteColumns);
+        const lastRow = Math.max(...noteColumns);
+        console.log("first line", firstLineRow);
         const firstColumn = 0;
-        const permanentLines = [0, 2, 4, 6, 8].map(x => x + firstLineRow);
-        const lastRow = 9;
+        const permanentLines = [0, 2, 4, 6, 8];
         this.props.notes.forEach((note, i) => {
+            console.log("note", note);
             const col = i + firstColumn;
-            for (let j = 0; j <= lastRow; j++) {
-                notes.push(<Note key={`${col},${j}`} style={{gridColumn: col + 1, gridRow: j + 1, borderBottomColor: permanentLines.includes(j) ? 'black' : 'white'}}>
-                    { this.props.notes[col] === j &&
-                        <Inside style={{color: this.props.activeNote === i? 'red' : 'black'}}>o</Inside>
+            const {row, bemol, diese} = notePos(note);
+            for (let j = firstLineRow; j <= lastRow; j++) {
+                notes.push(<Note key={`${col},${j}`} style={{gridColumn: col + 1, gridRow: j + 1 - firstLineRow, borderBottomColor: permanentLines.includes(j) || (j % 2 === 0 && (j < 0 || j > 8) && (row === j || row - 1 === j))  ? 'black' : 'white'}}>
+                    { row === j &&
+                        <Inside style={{color: this.props.activeNote === i? 'red' : 'black'}}>{noteChar(bemol, diese)}</Inside>
                     }
                 </Note>);
             }
-        })
+        });
       return (
           <StyledPartition>
               {notes}

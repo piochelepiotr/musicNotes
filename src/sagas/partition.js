@@ -12,7 +12,7 @@ function* workerSaga(action) {
 }
 
 function* textChangedSaga(action) {
-    if (notesNames[action.notes[action.activeNote]] === action.text) {
+    if (notesNames[action.notes[action.activeNote].note] === action.text) {
         yield put({type: "UPDATE_TEXT", message:""});
         yield put({type:"NEXT_NOTE", activeNote:action.activeNote, startTime: action.startTime});
     }
