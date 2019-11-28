@@ -200,12 +200,7 @@ class Piano extends Component {
 
     play = note => {
         this.setState({ play: !this.state.play, previous: this.state.next, next: note }, () => {
-            // console.log(this.state.play);
-            console.log(this.audio[note]);
-            console.log("previous", this.state.previous);
-            console.log("next", this.state.next);
             if (this.state.previous !== "") {
-                console.log("heer");
                 this.audio[this.state.previous].pause();
             }
             //if (this.state.play) {

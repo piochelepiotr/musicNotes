@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
-import { textChanged } from './actions/partitions';
+import { textChanged, changeKeyboard } from './actions/partitions';
 import { mapping } from './Piano';
 
 const StyledInput = styled.p`
@@ -37,7 +37,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    textChanged
+    textChanged,
+    changeKeyboard
 }
 
 export default connect(

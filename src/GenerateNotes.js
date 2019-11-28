@@ -14,7 +14,6 @@ export const numberNotes = 20;
 export const notePos = note => {
     const noteText = notesNames[note.note];
     const baseNote = noteText.substring(0, 2);
-    console.log(baseNote);
     const x = lines.findIndex(x => x === baseNote);
     let row = zeroNoteIndex - x;
     let bemol = noteText.endsWith("b");
@@ -42,7 +41,7 @@ const buildPartition = (notes) => {
 };
 
 const generateNotes = (length) => {
-    return buildPartition(hedwigs);
+    // return buildPartition(hedwigs);
     let notes = [];
     for(let i = 0; i < length; i++) {
         notes.push({

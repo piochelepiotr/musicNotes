@@ -52,13 +52,14 @@ class Partition extends Component {
             const {row} = notePos(note);
             return row;
         });
-        const firstLineRow = Math.min(...noteColumns, 0);
+        let firstLineRow = Math.min(...noteColumns, 0);
+        if (firstLineRow % 2 !== 0) {
+            firstLineRow--;
+        }
         const lastRow = Math.max(...noteColumns, 8);
-        console.log("first line", firstLineRow);
         const firstColumn = 0;
         const permanentLines = [0, 2, 4, 6, 8];
         this.props.notes.forEach((note, i) => {
-            console.log("note", note);
             const col = i + firstColumn;
             const {row, bemol, diese} = notePos(note);
             for (let j = firstLineRow; j <= lastRow; j++) {

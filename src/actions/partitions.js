@@ -2,6 +2,9 @@
 export const types = {
     TEXT: {
         CHANGED: 'TEXT_CHANGED'
+    },
+    KEYBOARD: {
+        CHANGE: 'CHANGE_KEYBOARD'
     }
 }
 
@@ -11,4 +14,8 @@ export const textChanged = (text, notes, activeNote, startTime) => ({
     notes,
     activeNote,
     startTime
-})
+});
+
+export const changeKeyboard = () => ({
+    type: types.KEYBOARD.CHANGE,
+});

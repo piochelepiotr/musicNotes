@@ -14,12 +14,12 @@ export const partitions = (state = initialState, action) => {
           activeNote: 0,
           notes: action.notes,
           startTime: action.time
-        }
+        };
       case 'UPDATE_ACTIVE':
         return {
           ...state,
           activeNote: action.newActiveNote,
-        }
+        };
       case 'UPDATE_TEXT':
         return {
           ...state,
@@ -29,7 +29,7 @@ export const partitions = (state = initialState, action) => {
       return {
         ...state,
         speed: action.speed,
-      }
+      };
       default:
         return state
     }
