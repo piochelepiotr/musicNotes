@@ -41,7 +41,7 @@ const buildPartition = (notes) => {
 };
 
 const generateNotes = (length) => {
-    // return buildPartition(hedwigs);
+    return buildPartition(hedwigs);
     let notes = [];
     for(let i = 0; i < length; i++) {
         notes.push({

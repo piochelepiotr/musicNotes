@@ -4,9 +4,23 @@ import styled from 'styled-components';
 import { textChanged, changeKeyboard } from './actions/partitions';
 import { mapping } from './Piano';
 
+const Container = styled.div`
+`;
+
 const StyledInput = styled.p`
     font-size: 40px;
-`
+`;
+
+const Button = styled.p`
+    background-color: rgb(100, 100, 100);
+    font-size: 30px;
+    border-radius: 3px;
+    padding: 5px;
+    display: inline-block;
+    &:hover {
+      background-color: rgb(200,200,200);
+    }
+`;
 
 class Input extends Component {
 
@@ -24,7 +38,10 @@ class Input extends Component {
 
     render() {
         return(
-            <StyledInput>Note : {mapping[this.props.message] ? mapping[this.props.message].readable : ""}</StyledInput>
+            <Container>
+                <StyledInput>Note : {mapping[this.props.message] ? mapping[this.props.message].readable : ""}</StyledInput>
+                <Button onClick={() => { this.props.changeKeyboard() }}>Switch keyboard</Button>
+            </Container>
         )
     }
 }
