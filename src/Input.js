@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { textChanged, changeKeyboard } from './actions/partitions';
 import { mapping } from './Piano';
@@ -23,41 +23,44 @@ const Button = styled.p`
 `;
 
 class Input extends Component {
+  constructor() {
+    super();
+    this.state = {
+      message: '',
+    };
+  }
 
-    constructor() {
-        super();
-        this.state = {
-            message: "",
-        };
-    }
+  onMessageChanged(e) {
+    const message = e.target.value;
+    this.props.textChanged(message, this.props.notes, this.props.activeNote, this.props.startTime);
+  }
 
-    onMessageChanged(e) {
-        var message = e.target.value;
-        this.props.textChanged(message, this.props.notes, this.props.activeNote, this.props.startTime);
-    }
-
-    render() {
-        return(
-            <Container>
-                <StyledInput>Note : {mapping[this.props.message] ? mapping[this.props.message].readable : ""}</StyledInput>
-                <Button onClick={() => { this.props.changeKeyboard() }}>Switch keyboard</Button>
-            </Container>
-        )
-    }
+  render() {
+    return (
+      <Container>
+        <StyledInput>
+Note :
+          {mapping[this.props.message] ? mapping[this.props.message].readable : ''}
+        </StyledInput>
+        <Button onClick={() => { this.props.changeKeyboard(); }}>Switch keyboard</Button>
+      </Container>
+    );
+  }
 }
 
-const mapStateToProps = state => ({
-    message: state.partitions.inputText,
-    notes: state.partitions.notes,
-    activeNote: state.partitions.activeNote,
-    startTime: state.partitions.startTime
-})
+const mapStateToProps = (state) => ({
+  message: state.partitions.inputText,
+  notes: state.partitions.notes,
+  activeNote: state.partitions.activeNote,
+  startTime: state.partitions.startTime,
+});
 
 const mapDispatchToProps = {
-    textChanged,
-    changeKeyboard
-}
+  textChanged,
+  changeKeyboard,
+};
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps)(Input);
+  mapStateToProps,
+  mapDispatchToProps,
+)(Input);

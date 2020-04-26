@@ -33,7 +33,7 @@ const noteChar = (bemol, diese) => {
   if (bemol) {
     return <StyledChar>&#9837;o</StyledChar>;
   } if (diese) {
-    return <StyledChar>&#9839;o</StyledChar>;
+    return <StyledChar>	&#9839;o</StyledChar>;
   }
   return <StyledChar>o</StyledChar>;
 };
@@ -53,7 +53,7 @@ class Partition extends Component {
     });
     let firstLineRow = Math.min(...noteColumns, 0);
     if (firstLineRow % 2 !== 0) {
-      firstLineRow -= 1;
+      firstLineRow--;
     }
     const lastRow = Math.max(...noteColumns, 8);
     const firstColumn = 0;
@@ -61,12 +61,11 @@ class Partition extends Component {
     this.props.notes.forEach((note, i) => {
       const col = i + firstColumn;
       const { row, bemol, diese } = notePos(note);
-      for (let j = firstLineRow; j <= lastRow; j += 1) {
-        notes.push(
-          <Note key={`${col},${j}`} style={{ gridColumn: col + 1, gridRow: j + 1 - firstLineRow, borderBottomColor: permanentLines.includes(j) || (j % 2 === 0 && (j < 0 || j > 8) && (row === j || row - 1 === j)) ? 'black' : 'white' }}>
-            { row === j && <Inside style={{ color: this.props.activeNote === i ? 'red' : 'black' }}>{noteChar(bemol, diese)}</Inside>}
-          </Note>,
-        );
+      for (let j = firstLineRow; j <= lastRow; j++) {
+        notes.push(<Note key={`${col},${j}`} style={{ gridColumn: col + 1, gridRow: j + 1 - firstLineRow, borderBottomColor: permanentLines.includes(j) || (j % 2 === 0 && (j < 0 || j > 8) && (row === j || row - 1 === j)) ? 'black' : 'white' }}>
+          { row === j
+                        && <Inside style={{ color: this.props.activeNote === i ? 'red' : 'black' }}>{noteChar(bemol, diese)}</Inside>}
+                   </Note>);
       }
     });
     return (
