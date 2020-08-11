@@ -1,6 +1,6 @@
 # Learn Piano
 
-I order to learn reading the notes, I've created this little app.
+In order to learn reading the notes, I've created this little app.
 You can use the app [here](https://piochelepiotr.github.io/musicNotes/)
 
 
